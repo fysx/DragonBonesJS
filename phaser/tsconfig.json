@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true,
+    "outFile": "./build/dragonBonesPhaser.js",
+    "sourceRoot": "./src/",
+    "rootDir": "src"
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    "Demos/*",
+    "./src/dragonBones/pixi/*"
+  ]
+}
