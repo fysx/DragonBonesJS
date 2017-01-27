@@ -4,7 +4,7 @@ namespace dragonBones {
      * Pixi 贴图集数据。
      * @version DragonBones 3.0
      */
-    export class PhaserTextureAtlasData extends TextureAtlasData{
+    export class PhaserTextureAtlasData extends TextureAtlasData {
         /**
          * @private
          */
@@ -30,7 +30,6 @@ namespace dragonBones {
             super._onClear();
 
             if (this.texture) {
-                //this.texture.destroy();
                 this.texture = null;
             }
         }
@@ -59,7 +58,7 @@ namespace dragonBones {
             super._onClear();
 
             if (this.texture) {
-                this.texture.destroy(true); // Ups now its take params
+                this.texture.destroy(true);
                 this.texture = null;
             }
         }

@@ -1,42 +1,35 @@
-
-
 var demosPhaser = {
 
     start: function() {
-        var game = new Phaser.Game(400, 400, Phaser.WEBGL, 'phaser-example', { preload: preload, create: create });
-        
+        var game = new Phaser.Game(640, 360, Phaser.WEBGL, 'phaser-example', {
+            preload: preload,
+            create: create,
+            update: update
+        });
+        var armatureDisplay;
         var F;
 
-        function preload(){
+        function preload() {
 
-            game.load.json("textureDataA","./resource/assets/michar/michara_tex.json");
-            game.load.json("dragonBonesData","./resource/assets/michar/michara_ske.json");
-            game.load.image("textureA","./resource/assets/michar/michara_tex.png");
-            /*var loader = new PIXI.loaders.Loader();
-            loader
-                .add("dragonBonesData", "./resource/assets/michar/michara_ske.json")
-                .add("textureDataA", "./resource/assets/michar/michara_tex.json")
-                .add("textureA", "./resource/assets/michar/michara_tex.png");
-            loader.once("complete", loadComplateHandler, this);
-            loader.load();*/
+            game.load.json("textureDataA", "./resource/assets/michar/michara_tex.json");
+            game.load.json("dragonBonesData", "./resource/assets/michar/michara_ske.json");
+            game.load.image("textureA", "./resource/assets/michar/michara_tex.png");
         }
 
         function create() {
             game.stage.backgroundColor = "#4488AA";
-            F =  new dragonBones.PhaserFactory(null,game);
+            F = new dragonBones.PhaserFactory(null, game);
             F.parseDragonBonesData(game.cache.getJSON("dragonBonesData"));
             F.parseTextureAtlasData(game.cache.getJSON("textureDataA"), game.cache.getBaseTexture("textureA"));
 
-            var armatureDisplay = F.buildArmatureDisplay("Armature");
+            armatureDisplay = F.buildArmatureDisplay("Armature");
             armatureDisplay.animation.play("walk2");
-           // armatureDisplay.animation.timeScale = 1;
-          //  armatureDisplay.animation.play("walk2");
-            //armatureDisplay.create(game.world.width * 0.5,game.world.height * 0.5+100);
-
-            //this._stage.addChild(armatureDisplay);
             armatureDisplay.x = game.world.width / 2;
-            armatureDisplay.y = game.world.height  / 2 + 50;
-            armatureDisplay.scale.set(0.5,0.5);
+            armatureDisplay.scale.set(0.2, 0.2);
+        }
+
+        function update() {
+            armatureDisplay.y += 0.1;
         }
     }
 }

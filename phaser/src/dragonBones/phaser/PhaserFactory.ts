@@ -27,7 +27,7 @@ namespace dragonBones {
          */
         public static get factory(): PhaserFactory {
             if (!PhaserFactory._factory) {
-                PhaserFactory._factory = new PhaserFactory(null,this._game);
+                PhaserFactory._factory = new PhaserFactory(null, this._game);
             }
 
             return PhaserFactory._factory;
@@ -45,7 +45,7 @@ namespace dragonBones {
                 PhaserFactory._eventManager = new PhaserArmatureDisplay(game);
                 PhaserFactory._clock = new WorldClock();
                 PhaserFactory._game = game; // Added to Phaser Context
-                PhaserFactory._game.time.events.loop(0,PhaserFactory._clockHandler,PhaserFactory._game); //added phaser ticker
+                PhaserFactory._game.time.events.loop(0, PhaserFactory._clockHandler, PhaserFactory._game); //added phaser ticker
             }
         }
         /**
@@ -82,8 +82,8 @@ namespace dragonBones {
         protected _generateSlot(dataPackage: BuildArmaturePackage, skinSlotData: SkinSlotData, armature: Armature): Slot {
             const slot = BaseObject.borrowObject(PhaserSlot);
             slot._init(skinSlotData,
-                new Phaser.Sprite(PhaserFactory._game,null,null),
-                new Phaser.Rope(PhaserFactory._game,null,null,null,null,[]) // TODO ....hmm expriment
+                new Phaser.Sprite(PhaserFactory._game, null, null),
+                new Phaser.Rope(PhaserFactory._game, null, null, null, null, [])
             );
 
             const displayList = [];
@@ -126,7 +126,7 @@ namespace dragonBones {
                                 }
                             }
 
-                            displayData.armature = childArmature.armatureData; // 
+                            displayData.armature = childArmature.armatureData; //
                         }
 
                         displayList.push(childArmature);
