@@ -266,6 +266,8 @@ namespace dragonBones {
                     meshDisplay.vertices[i + 1] = yG;
                 }
             }
+
+
         }
 
         /**
@@ -286,13 +288,30 @@ namespace dragonBones {
             } else {
                 const x = this.globalTransformMatrix.tx - (this.globalTransformMatrix.a * this._pivotX + this.globalTransformMatrix.c * this._pivotY);
                 const y = this.globalTransformMatrix.ty - (this.globalTransformMatrix.b * this._pivotX + this.globalTransformMatrix.d * this._pivotY);
-
                 if(this._renderDisplay instanceof Phaser.Rope){
                     this._renderDisplay.position.x = x || 0;
                     this._renderDisplay.position.y = y || 0;
-                    this._renderDisplay.scale.x = !this.global.scaleX ? 1 : this.global.scaleX;
-                    this._renderDisplay.scale.y = !this.global.scaleY ? 1 : this.global.scaleY;
-                    this._renderDisplay.rotation = this.global.skewY || 0;
+                    /*this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[0],this._meshData.vertices[1]))
+                    this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[2],this._meshData.vertices[3]))
+                    this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[4],this._meshData.vertices[5]))
+                    this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[6],this._meshData.vertices[7]))
+                    this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[8],this._meshData.vertices[9]))
+                   /* this._renderDisplay.points.push(new Phaser.Point(this.global.scaleX,this.global.scaleY))
+                    this._renderDisplay.points.push(new Phaser.Point(this.global.skewX,this.global.skewY))
+                    this._renderDisplay.points.push(new Phaser.Point(this.global.x,this.global.y))*/
+                    //PhaserFactory._game.debug.ropeSegments(this._renderDisplay);
+                    this._renderDisplay.worldTransform.tx = this.globalTransformMatrix.tx /*+ (this._renderDisplay.parent.x)*/;
+                    this._renderDisplay.worldTransform.ty = this.globalTransformMatrix.ty /*+ (this._renderDisplay.parent.y)/*+ (PhaserFactory._game.width*0.625)*/;
+                    this._renderDisplay.worldTransform.a = this.globalTransformMatrix.a;
+                    this._renderDisplay.worldTransform.b = this.globalTransformMatrix.b;
+                    this._renderDisplay.worldTransform.c = this.globalTransformMatrix.c;
+                    this._renderDisplay.worldTransform.d = this.globalTransformMatrix.d;
+                    this._renderDisplay.worldTransform.scale(this._renderDisplay.parent.scale.x,this._renderDisplay.parent.scale.y);
+                    this._renderDisplay.worldTransform.translate(this._renderDisplay.parent.x,this._renderDisplay.parent.y);
+                    //this._renderDisplay.pivot = new PIXI.Point(this._pivotX,this._pivotY);
+                    //this._renderDisplay.scale.x = !this.global.scaleX ? 1 : this.global.scaleX;
+                    //this._renderDisplay.scale.y = !this.global.scaleY ? 1 : this.global.scaleY;
+                    //this._renderDisplay.rotation = this.global.skewY || 0;
                 } else if(this._renderDisplay instanceof PIXI.Sprite){
                     this._renderDisplay.position.x = x || 0;
                     this._renderDisplay.position.y = y || 0;
