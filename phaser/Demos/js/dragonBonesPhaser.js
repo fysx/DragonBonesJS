@@ -30,115 +30,18 @@ var dragonBones;
         /**
          * @private
          */
-        PhaserArmatureDisplay.prototype._dispatchEvent = function (type, eventObject) {
-            //this._dispatchEvent(type,eventObject);
-        };
+        PhaserArmatureDisplay.prototype._dispatchEvent = function (type, eventObject) { };
         /**
          * @private
          */
         PhaserArmatureDisplay.prototype._debugDraw = function (isEnabled) {
-            /*
-               //TODO
-               if (!this._debugDrawer) {
-                   this._debugDrawer = new PIXI.Sprite();
-                   const boneDrawer = new PIXI.Graphics();
-                   this._debugDrawer.addChild(boneDrawer);
-               }
-   
-               if (isEnabled) {
-                   this.addChild(this._debugDrawer);
-                   const boneDrawer = this._debugDrawer.getChildAt(0) as PIXI.Graphics;
-                   boneDrawer.clear();
-   
-                   const bones = this._armature.getBones();
-                   for (let i = 0, l = bones.length; i < l; ++i) {
-                       const bone = bones[i];
-                       const boneLength = bone.length;
-                       const startX = bone.globalTransformMatrix.tx;
-                       const startY = bone.globalTransformMatrix.ty;
-                       const endX = startX + bone.globalTransformMatrix.a * boneLength;
-                       const endY = startY + bone.globalTransformMatrix.b * boneLength;
-   
-                       boneDrawer.lineStyle(2, bone.ik ? 0xFF0000 : 0x00FFFF, 0.7);
-                       boneDrawer.moveTo(startX, startY);
-                       boneDrawer.lineTo(endX, endY);
-                       boneDrawer.lineStyle(0, 0, 0);
-                       boneDrawer.beginFill(0x00FFFF, 0.7);
-                       boneDrawer.drawCircle(startX, startY, 3);
-                       boneDrawer.endFill();
-                   }
-   
-                   const slots = this._armature.getSlots();
-                   for (let i = 0, l = slots.length; i < l; ++i) {
-                       const slot = slots[i];
-                       const boundingBoxData = slot.boundingBoxData;
-   
-                       if (boundingBoxData) {
-                           let child = this._debugDrawer.getChildByName(slot.name) as PIXI.Graphics;
-                           if (!child) {
-                               child = new PIXI.Graphics();
-                               child.name = slot.name;
-                               this._debugDrawer.addChild(child);
-                           }
-   
-                           child.clear();
-                           child.beginFill(0xFF00FF, 0.3);
-   
-                           switch (boundingBoxData.type) {
-                               case BoundingBoxType.Rectangle:
-                                   child.drawRect(-boundingBoxData.width * 0.5, -boundingBoxData.height * 0.5, boundingBoxData.width, boundingBoxData.height);
-                                   break;
-   
-                               case BoundingBoxType.Ellipse:
-                                   child.drawEllipse(-boundingBoxData.width * 0.5, -boundingBoxData.height * 0.5, boundingBoxData.width, boundingBoxData.height);
-                                   break;
-   
-                               case BoundingBoxType.Polygon:
-                                   const vertices = boundingBoxData.vertices;
-                                   for (let i = 0, l = boundingBoxData.vertices.length; i < l; i += 2) {
-                                       if (i === 0) {
-                                           child.moveTo(vertices[i], vertices[i + 1]);
-                                       }
-                                       else {
-                                           child.lineTo(vertices[i], vertices[i + 1]);
-                                       }
-                                   }
-                                   break;
-   
-                               default:
-                                   break;
-                           }
-   
-                           child.endFill();
-                           slot._updateTransformAndMatrix();
-   
-                           const x = slot.globalTransformMatrix.tx - (slot.globalTransformMatrix.a * slot._pivotX + slot.globalTransformMatrix.c * slot._pivotY);
-                           const y = slot.globalTransformMatrix.ty - (slot.globalTransformMatrix.b * slot._pivotX + slot.globalTransformMatrix.d * slot._pivotY);
-   
-                           child.setTransform(
-                               x, y,
-                               slot.global.scaleX, slot.global.scaleY,
-                               slot.global.skewY, slot.global.skewX - slot.global.skewY
-                           );
-                       }
-                       else {
-                           const child = this._debugDrawer.getChildByName(slot.name);
-                           if (child) {
-                               this._debugDrawer.removeChild(child);
-                           }
-                       }
-                   }
-               }
-               else if (this._debugDrawer && this._debugDrawer.parent === this) {
-                   this.removeChild(this._debugDrawer);
-               }*/
+            //TODO
         };
         /**
          * @inheritDoc
          */
         PhaserArmatureDisplay.prototype.hasEvent = function (type) {
-            //return this.hasEvent(type);
-            //return this.listeners(type, true) as boolean;
+            // Need to test this more...
             return true;
         };
         /**
@@ -271,8 +174,7 @@ var dragonBones;
          */
         PhaserFactory.prototype._generateSlot = function (dataPackage, skinSlotData, armature) {
             var slot = dragonBones.BaseObject.borrowObject(dragonBones.PhaserSlot);
-            slot._init(skinSlotData, new Phaser.Sprite(PhaserFactory._game, null, null), new Phaser.Rope(PhaserFactory._game, null, null, null, null, []) // TODO ....hmm expriment
-            );
+            slot._init(skinSlotData, new Phaser.Sprite(PhaserFactory._game, null, null), new Phaser.Rope(PhaserFactory._game, null, null, null, null, []));
             var displayList = [];
             for (var i = 0, l = skinSlotData.displays.length; i < l; ++i) {
                 var displayData = skinSlotData.displays[i];
@@ -307,7 +209,7 @@ var dragonBones;
                                     childArmature.animation.play();
                                 }
                             }
-                            displayData.armature = childArmature.armatureData; // 
+                            displayData.armature = childArmature.armatureData; //
                         }
                         displayList.push(childArmature);
                         break;
@@ -536,8 +438,7 @@ var dragonBones;
                 if (currentTextureAtlas) {
                     if (!currentTextureData.texture) {
                         currentTextureData.texture = new PIXI.Texture(currentTextureAtlas, currentTextureData.region, // No need to set frame.
-                        currentTextureData.region, new PIXI.Rectangle(0, 0, currentTextureData.region.width, currentTextureData.region.height) /*,
-                        currentTextureData.rotated WTF what this does?? */);
+                        currentTextureData.region, new PIXI.Rectangle(0, 0, currentTextureData.region.width, currentTextureData.region.height));
                     }
                     if (isMeshDisplay) {
                         var meshDisplay = this._renderDisplay;
@@ -564,7 +465,7 @@ var dragonBones;
                 }
             }
             if (isMeshDisplay) {
-                var meshDisplay = this._renderDisplay; // expriment...Useing Rope instead of mesh
+                var meshDisplay = this._renderDisplay;
                 meshDisplay.visible = false;
                 meshDisplay.texture = null;
                 meshDisplay.x = 0.0;
@@ -640,22 +541,15 @@ var dragonBones;
                 if (this._renderDisplay instanceof Phaser.Rope) {
                     this._renderDisplay.position.x = x || 0;
                     this._renderDisplay.position.y = y || 0;
-                    /*this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[0],this._meshData.vertices[1]))
-                    this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[2],this._meshData.vertices[3]))
-                    this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[4],this._meshData.vertices[5]))
-                    this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[6],this._meshData.vertices[7]))
-                    this._renderDisplay.points.push(new Phaser.Point(this._meshData.vertices[8],this._meshData.vertices[9]))
-                   /* this._renderDisplay.points.push(new Phaser.Point(this.global.scaleX,this.global.scaleY))
-                    this._renderDisplay.points.push(new Phaser.Point(this.global.skewX,this.global.skewY))
-                    this._renderDisplay.points.push(new Phaser.Point(this.global.x,this.global.y))*/
-                    //PhaserFactory._game.debug.ropeSegments(this._renderDisplay);
-                    this._renderDisplay.worldTransform.tx = this.globalTransformMatrix.tx /*+ (this._renderDisplay.parent.x)*/;
-                    this._renderDisplay.worldTransform.ty = this.globalTransformMatrix.ty /*+ (this._renderDisplay.parent.y)/*+ (PhaserFactory._game.width*0.625)*/;
+                    this._renderDisplay.worldTransform.tx = this.globalTransformMatrix.tx;
+                    this._renderDisplay.worldTransform.ty = this.globalTransformMatrix.ty;
                     this._renderDisplay.worldTransform.a = this.globalTransformMatrix.a;
                     this._renderDisplay.worldTransform.b = this.globalTransformMatrix.b;
                     this._renderDisplay.worldTransform.c = this.globalTransformMatrix.c;
                     this._renderDisplay.worldTransform.d = this.globalTransformMatrix.d;
-                    this._renderDisplay.worldTransform.scale(this._renderDisplay.parent.scale.x, this._renderDisplay.parent.scale.y);
+                    var scaleX = !this._renderDisplay.parent.scale.x ? 1 : this._renderDisplay.parent.scale.x;
+                    var scaleY = !this._renderDisplay.parent.scale.y ? 1 : this._renderDisplay.parent.scale.y;
+                    this._renderDisplay.worldTransform.scale(scaleX, scaleY);
                     this._renderDisplay.worldTransform.translate(this._renderDisplay.parent.x, this._renderDisplay.parent.y);
                 }
                 else if (this._renderDisplay instanceof PIXI.Sprite) {
@@ -698,7 +592,6 @@ var dragonBones;
         PhaserTextureAtlasData.prototype._onClear = function () {
             _super.prototype._onClear.call(this);
             if (this.texture) {
-                //this.texture.destroy();
                 this.texture = null;
             }
         };
@@ -725,7 +618,7 @@ var dragonBones;
         PhaserTextureData.prototype._onClear = function () {
             _super.prototype._onClear.call(this);
             if (this.texture) {
-                this.texture.destroy(true); // Ups now its take params
+                this.texture.destroy(true);
                 this.texture = null;
             }
         };

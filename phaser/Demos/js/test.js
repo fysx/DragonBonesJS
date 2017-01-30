@@ -10,7 +10,6 @@ var demosPhaser = {
         var F;
 
         function preload() {
-
             game.load.json("textureDataA", "./resource/assets/michar/michara_tex.json");
             game.load.json("dragonBonesData", "./resource/assets/michar/michara_ske.json");
             game.load.image("textureA", "./resource/assets/michar/michara_tex.png");
@@ -26,6 +25,8 @@ var demosPhaser = {
             armatureDisplay.animation.play("walk2");
             armatureDisplay.x = game.world.width / 2;
             armatureDisplay.scale.set(0.2, 0.2);
+            //armatureDisplay._armature.getSlot("accesories").display = null;
+            //armatureDisplay._armature.getSlot("accesories1").display = null;
         }
 
         function update() {
