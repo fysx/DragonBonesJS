@@ -168,10 +168,10 @@ namespace dragonBones {
                     }
 
                     if (isMeshDisplay) { // Mesh.
-                        const meshDisplay = this._renderDisplay as Phaser.Rope;
+                        const meshDisplay = this._renderDisplay as PIXI.Strip;
                         const textureAtlasWidth = currentTextureAtlas ? currentTextureAtlas.width : 1;
                         const textureAtlasHeight = currentTextureAtlas ? currentTextureAtlas.height : 1;
-
+                        meshDisplay.drawMode = PIXI.Strip.DrawModes.TRIANGLES;
                         meshDisplay.uvs = <any>new Float32Array(this._meshData.uvs);
                         meshDisplay.vertices = <any>new Float32Array(this._meshData.vertices);
                         meshDisplay.indices = <any>new Uint16Array(this._meshData.vertexIndices);
@@ -198,7 +198,7 @@ namespace dragonBones {
             }
 
             if (isMeshDisplay) {
-                const meshDisplay = this._renderDisplay as Phaser.Rope;
+                const meshDisplay = this._renderDisplay as PIXI.Strip;
                 meshDisplay.visible = false;
                 meshDisplay.texture = null;
                 meshDisplay.x = 0.0;
@@ -216,7 +216,7 @@ namespace dragonBones {
          * @private
          */
         protected _updateMesh(): void {
-            const meshDisplay = this._renderDisplay as Phaser.Rope;
+            const meshDisplay = this._renderDisplay as PIXI.Strip;
             const hasFFD = this._ffdVertices.length > 0;
 
             if (this._meshData.skinned) {
@@ -286,7 +286,7 @@ namespace dragonBones {
             } else {
                 const x = this.globalTransformMatrix.tx - (this.globalTransformMatrix.a * this._pivotX + this.globalTransformMatrix.c * this._pivotY);
                 const y = this.globalTransformMatrix.ty - (this.globalTransformMatrix.b * this._pivotX + this.globalTransformMatrix.d * this._pivotY);
-                if (this._renderDisplay instanceof Phaser.Rope) {
+                if (this._renderDisplay instanceof PIXI.Strip) {
                     this._renderDisplay.position.x = x || 0;
                     this._renderDisplay.position.y = y || 0;
                     this._renderDisplay.worldTransform.tx = this.globalTransformMatrix.tx;

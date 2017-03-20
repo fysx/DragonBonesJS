@@ -1,3 +1,5 @@
+this is the fork of phaser-compatible DB-JS lib with working meshes
+
 # DragonBones JavaScript / TypeScript Runtime
 * [DragonBones common library](./DragonBones/)
 * Highly suggest use [DragonBones Pro](http://dragonbones.github.io/) to create aniamtion.
